@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:padding="5dip" >
+
+    <TextView
+        android:id="@+id/list_item_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"/>
+
+    <TextView
+        android:id="@+id/list_item_Description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/list_item_Title"
+        android:textColor="#343434"
+        android:layout_marginTop="1dip"/>
+
+    <TextView
+        android:id="@+id/list_item_Distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/list_item_Title"
+        android:gravity="end"
+        android:textColor="#10bcc9"
+        android:textStyle="bold"/>
+
+    <!-- Add an arrow here -->
+
+</RelativeLayout>

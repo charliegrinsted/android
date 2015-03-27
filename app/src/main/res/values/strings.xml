@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GamePlan</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="myEvents_title">My Events</string>
+    <string name="findEventsBtn">Find Nearby Events</string>
+
+</resources>
