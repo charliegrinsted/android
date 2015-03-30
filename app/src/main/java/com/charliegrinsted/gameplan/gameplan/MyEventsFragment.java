@@ -46,6 +46,7 @@ public class MyEventsFragment extends Fragment {
 
         swipeRefreshLayout = (SwipeRefreshLayout) ll.findViewById(R.id.my_events_swipe_refresh_layout);
         listView = (ListView) ll.findViewById(R.id.my_events_list);
+        new ReloadMyEventsTask().execute();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
