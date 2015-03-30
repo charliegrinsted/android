@@ -95,7 +95,7 @@ public class FindEventsFragment extends Fragment {
             try {
 
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.1.8:1337/api/search/events/nearby/");
+                HttpPost httppost = new HttpPost("http://192.168.1.115:1337/api/search/events/nearby/");
 
                 String searchDistance = Integer.toString(searchRadius.getProgress()); // take the slider value for the search distance
 

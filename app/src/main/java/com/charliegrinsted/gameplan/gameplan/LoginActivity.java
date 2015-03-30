@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.charliegrinsted.gameplan.R;
@@ -36,6 +37,7 @@ public class LoginActivity extends ActionBarActivity {
     private String storedPassword;
 
     EditText loginUsername;
+    ProgressBar loginSpinner;
     EditText loginPassword;
     TextView loginErrorMessage;
     Button loginBtn;
@@ -51,6 +53,7 @@ public class LoginActivity extends ActionBarActivity {
         loginPassword = (EditText) findViewById(R.id.loginPassword);
         loginBtn = (Button) findViewById(R.id.loginBtn);
         loginErrorMessage = (TextView) findViewById(R.id.loginErrorMessage);
+        loginSpinner = (ProgressBar) findViewById(R.id.loginSpinner);
 
         storedSharedPreferences = getSharedPreferences("CurrentUser", MODE_PRIVATE);
 
@@ -63,7 +66,7 @@ public class LoginActivity extends ActionBarActivity {
                 if (storedUsername.equals("") || storedPassword.equals("")){
                     loginErrorMessage.setText("Please complete all fields"); // display an error if the fields haven't been filled in
                 } else {
-                    loginErrorMessage.setText("Off we go...");
+                    loginSpinner.setVisibility(View.VISIBLE);
                     new LoginTask().execute(); // execute login task
                 }
             }
@@ -82,7 +85,7 @@ public class LoginActivity extends ActionBarActivity {
             try {
 
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.1.8:1337/api/session/create/");
+                HttpPost httppost = new HttpPost("http://192.168.1.115:1337/api/session/create/");
 
                 List<NameValuePair> loginDetails = new ArrayList<>(2);
                 loginDetails.add(new BasicNameValuePair("userName", storedUsername)); // add the username as a POST parameter

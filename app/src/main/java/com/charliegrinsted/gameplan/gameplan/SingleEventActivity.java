@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.charliegrinsted.gameplan.R;
@@ -32,9 +34,10 @@ import java.util.List;
 
 public class SingleEventActivity extends Activity {
 
-    TextView singleEventID;
+    TextView loadingText;
     String thisEventID;
     JSONObject jsonResponse;
+    ProgressBar loadingSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,12 @@ public class SingleEventActivity extends Activity {
 
         Intent intent = getIntent();
 
+        loadingSpinner = (ProgressBar) findViewById(R.id.loadingSpinner);
+        loadingText = (TextView) findViewById(R.id.loadingText);
         thisEventID = intent.getStringExtra("eventID");
 
         new FindSingleEventTask().execute();
 
-        singleEventID = (TextView) findViewById(R.id.single_event_id);
-        singleEventID.setText(thisEventID);
 
     }
 
@@ -67,7 +70,7 @@ public class SingleEventActivity extends Activity {
                 String auth_token = storedSharedPreferences.getString("AuthToken", "Not Found"); // extract JSONWebToken from SharedPreferences
 
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpGet httpget = new HttpGet("http://10.0.1.8:1337/api/events/" + thisEventID);
+                HttpGet httpget = new HttpGet("http://192.168.1.115:1337/api/events/" + thisEventID);
 
                 httpget.setHeader("token", auth_token); // add JSONWebToken as a header on the HTTP request
 
@@ -97,7 +100,7 @@ public class SingleEventActivity extends Activity {
                     // work from here
                     //JSONArray items = jsonResponse.getJSONArray("results");
                     //returnedEvents = new ArrayList<>();
-                    singleEventID.setText(jsonResponse.toString());
+                    //singleEventID.setText(jsonResponse.toString());
 
                     populateSingleEvent();
 
@@ -110,6 +113,10 @@ public class SingleEventActivity extends Activity {
     }
 
     private void populateSingleEvent(){
+
+        // Hide loading spinner and text
+        loadingSpinner.setVisibility(View.INVISIBLE);
+        loadingText.setVisibility(View.INVISIBLE);
 
         Log.e("Event Fired:", "YES");
 

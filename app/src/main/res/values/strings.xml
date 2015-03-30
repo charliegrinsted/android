@@ -8,4 +8,6 @@
     <string name="myEvents_title">My Events</string>
     <string name="findEventsBtn">Find Nearby Events</string>
 
+    <string name="loadingEvents">Loading Events</string>
+
 </resources>
