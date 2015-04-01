@@ -141,7 +141,9 @@ public class LoginActivity extends ActionBarActivity {
                 editor.apply();
 
                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
 
             } else {
                 loginErrorMessage.setText("Unable to connect at this time. Please try again later.");
