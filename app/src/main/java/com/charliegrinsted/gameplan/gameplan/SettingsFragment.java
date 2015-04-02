@@ -36,7 +36,7 @@ public class SettingsFragment extends Fragment {
             editor.clear(); // clear the stored user details
             editor.apply(); // save changes to SharedPreferences
 
-            Intent intent = new Intent(getActivity(), MainActivity.class); // create intent to send user back to splash screen
+            Intent intent = new Intent(getActivity(), LoginActivity.class); // create intent to send user back to splash screen
             startActivity(intent); // launch the intent
 
             }

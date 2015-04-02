@@ -118,6 +118,12 @@ public class SingleEventActivity extends Activity {
         loadingSpinner.setVisibility(View.INVISIBLE);
         loadingText.setVisibility(View.INVISIBLE);
 
+
+        // Put logic here to display time (is it past the event start date? Shouldn't be, but check
+
+        // Also whether the current user is already RSVP
+        // if Yes, say "Going" and display "Cancel" button
+        // else display the "Join" button
         Log.e("Event Fired:", "YES");
 
     }

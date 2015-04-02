@@ -85,6 +85,23 @@
             android:layout_centerInParent="true"
             android:text="Follow"
             android:textStyle="bold" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/joinButton"
+            android:background="@color/action"
+            android:textColor="@color/white"
+            android:id="@+id/joinBtn"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancelButton"
+            android:background="@color/action"
+            android:textColor="@color/white"
+            android:id="@+id/cancelBtn"/>
+
     </RelativeLayout>
 
     <RelativeLayout

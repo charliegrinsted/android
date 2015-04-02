@@ -8,5 +8,7 @@
     <string name="findEventsBtn">Find Nearby Events</string>
 
     <string name="loadingEvents">Loading Events</string>
+    <string name="joinButton">Join this event</string>
+    <string name="cancelButton">Cancel your attendance</string>
 
 </resources>
