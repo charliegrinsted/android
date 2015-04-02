@@ -3,6 +3,7 @@
 
     <string name="loginButton">Login</string>
     <string name="loginHint">Username</string>
+    <string name="passwordHint">Password</string>
 
     <string name="myEvents_title">My Events</string>
     <string name="findEventsBtn">Find Nearby Events</string>
