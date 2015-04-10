@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -38,6 +39,7 @@ public class SingleEventActivity extends Activity {
     String thisEventID;
     JSONObject jsonResponse;
     ProgressBar loadingSpinner;
+    View loadingParts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class SingleEventActivity extends Activity {
 
         Intent intent = getIntent();
 
+        loadingParts = findViewById(R.id.loadingParts);
         loadingSpinner = (ProgressBar) findViewById(R.id.loadingSpinner);
         loadingText = (TextView) findViewById(R.id.loadingText);
         thisEventID = intent.getStringExtra("eventID");
@@ -70,7 +73,7 @@ public class SingleEventActivity extends Activity {
                 String auth_token = storedSharedPreferences.getString("AuthToken", "Not Found"); // extract JSONWebToken from SharedPreferences
 
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpGet httpget = new HttpGet("http://192.168.1.115:1337/api/events/" + thisEventID);
+                HttpGet httpget = new HttpGet("http://planaga.me/api/events/" + thisEventID);
 
                 httpget.setHeader("token", auth_token); // add JSONWebToken as a header on the HTTP request
 
@@ -115,9 +118,7 @@ public class SingleEventActivity extends Activity {
     private void populateSingleEvent(){
 
         // Hide loading spinner and text
-        loadingSpinner.setVisibility(View.INVISIBLE);
-        loadingText.setVisibility(View.INVISIBLE);
-
+        loadingParts.setVisibility(View.INVISIBLE);
 
         // Put logic here to display time (is it past the event start date? Shouldn't be, but check
 

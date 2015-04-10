@@ -85,7 +85,7 @@ public class LoginActivity extends ActionBarActivity {
             try {
 
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://192.168.1.115:1337/api/session/create/");
+                HttpPost httppost = new HttpPost("http://planaga.me/api/session/create/");
 
                 List<NameValuePair> loginDetails = new ArrayList<>(2);
                 loginDetails.add(new BasicNameValuePair("userName", storedUsername)); // add the username as a POST parameter

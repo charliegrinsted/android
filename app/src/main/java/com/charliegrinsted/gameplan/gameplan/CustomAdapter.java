@@ -11,9 +11,6 @@ import com.charliegrinsted.gameplan.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Charlie on 04/03/15.
- */
 class CustomAdapter extends ArrayAdapter<Events> {
 
     Context context;
@@ -33,13 +30,11 @@ class CustomAdapter extends ArrayAdapter<Events> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View single_row = inflater.inflate(R.layout.list_item, parent, false);
         TextView row_title = (TextView) single_row.findViewById(R.id.list_item_Title);
-        TextView row_description = (TextView) single_row.findViewById(R.id.list_item_Description);
         TextView row_distance = (TextView) single_row.findViewById(R.id.list_item_Distance);
 
         Events thisEvent = itemsArray.get(position);
 
         row_title.setText(thisEvent.getEventTitle());
-        row_description.setText(thisEvent.getEventInfo());
         row_distance.setText(thisEvent.getEventDistance());
 
         return single_row;

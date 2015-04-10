@@ -75,7 +75,7 @@ public class MyEventsFragment extends Fragment {
                 String auth_token = storedSharedPreferences.getString("AuthToken", "Not Found"); // extract JSONWebToken from SharedPreferences
 
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpGet httpget = new HttpGet("http://192.168.1.115:1337/api/users/" + userName);
+                HttpGet httpget = new HttpGet("http://planaga.me/api/users/" + userName);
 
                 httpget.setHeader("token", auth_token); // add JSONWebToken as a header on the HTTP request
 

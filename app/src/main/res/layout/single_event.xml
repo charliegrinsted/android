@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/user_info_id"
+        android:id="@+id/loadingParts"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -25,66 +25,11 @@
             android:gravity="center"
             android:text="@string/loadingEvents" />
 
-        <TextView
-            android:id="@+id/user_name_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/line_id"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/city_country_name_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/user_name_id"
-            android:layout_centerHorizontal="true"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@android:color/darker_gray"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/user_discription_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/city_country_name_id"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal|center"
-            android:textColor="@android:color/darker_gray"
-            android:textStyle="normal" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/chat_achive_smile_id"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/user_info_id"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal" >
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/follow_bg_Id"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/chat_achive_smile_id"
-        android:visibility="gone" >
-
-        <TextView
-            android:id="@+id/follow_text_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Follow"
-            android:textStyle="bold" />
+        android:layout_height="wrap_content">
 
         <Button
             android:layout_width="match_parent"
