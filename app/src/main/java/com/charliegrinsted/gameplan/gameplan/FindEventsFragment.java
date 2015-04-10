@@ -3,6 +3,8 @@ package com.charliegrinsted.gameplan.gameplan;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -99,12 +101,16 @@ public class FindEventsFragment extends Fragment {
 
                 String searchDistance = Integer.toString(searchRadius.getProgress()); // take the slider value for the search distance
 
-                List<NameValuePair> locationDetails = new ArrayList<>();
+                LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                String longitude = String.valueOf(location.getLongitude()); // get the longitude as a string
+                String latitude = String.valueOf(location.getLatitude()); // get the latitude as a string
 
+                List<NameValuePair> locationDetails = new ArrayList<>();
                 // need to get the actual phone location and pass in instead of these dummy parameters
 
-                locationDetails.add(new BasicNameValuePair("lat", "51.5033630")); // add the latitude as a POST parameter
-                locationDetails.add(new BasicNameValuePair("lng", "-0.1276250")); // add the longitude as a POST parameter
+                locationDetails.add(new BasicNameValuePair("lat", latitude)); // add the latitude as a POST parameter
+                locationDetails.add(new BasicNameValuePair("lng", longitude)); // add the longitude as a POST parameter
                 locationDetails.add(new BasicNameValuePair("distance", searchDistance)); // add the longitude as a POST parameter
 
                 httppost.setEntity(new UrlEncodedFormEntity(locationDetails)); // add parameters to request
