@@ -105,6 +105,9 @@ public class FindEventsFragment extends Fragment {
                 Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 String longitude = String.valueOf(location.getLongitude()); // get the longitude as a string
                 String latitude = String.valueOf(location.getLatitude()); // get the latitude as a string
+                Log.e("Longitude is:", longitude);
+                Log.e("Latitude is:", latitude);
+
 
                 List<NameValuePair> locationDetails = new ArrayList<>();
                 // need to get the actual phone location and pass in instead of these dummy parameters

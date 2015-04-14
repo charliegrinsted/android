@@ -41,6 +41,8 @@ public class SingleEventActivity extends Activity {
     ProgressBar loadingSpinner;
     View loadingParts;
 
+    TextView singleEventTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,6 +55,8 @@ public class SingleEventActivity extends Activity {
         loadingSpinner = (ProgressBar) findViewById(R.id.loadingSpinner);
         loadingText = (TextView) findViewById(R.id.loadingText);
         thisEventID = intent.getStringExtra("eventID");
+
+        singleEventTitle = (TextView) findViewById(R.id.singleEventTitle);
 
         new FindSingleEventTask().execute();
 
@@ -99,13 +103,18 @@ public class SingleEventActivity extends Activity {
                 try {
 
                     jsonResponse = new JSONObject(result);
+                    JSONObject single_event = jsonResponse.getJSONObject("thisEvent"); // pull out the event object
+                    Events event = new Events();
+                    event.setEventTitle(single_event.getString("eventTitle"));
+                    event.setEventInfo(single_event.getString("eventInfo"));
+                    event.setEventID(single_event.getString("id"));
 
                     // work from here
                     //JSONArray items = jsonResponse.getJSONArray("results");
                     //returnedEvents = new ArrayList<>();
                     //singleEventID.setText(jsonResponse.toString());
 
-                    populateSingleEvent();
+                    populateSingleEvent(event);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -115,17 +124,21 @@ public class SingleEventActivity extends Activity {
         }
     }
 
-    private void populateSingleEvent(){
+    private void populateSingleEvent(Events event){
+
 
         // Hide loading spinner and text
         loadingParts.setVisibility(View.INVISIBLE);
 
         // Put logic here to display time (is it past the event start date? Shouldn't be, but check
+        singleEventTitle.setText(event.getEventTitle());
 
         // Also whether the current user is already RSVP
         // if Yes, say "Going" and display "Cancel" button
         // else display the "Join" button
         Log.e("Event Fired:", "YES");
+
+
 
     }
 

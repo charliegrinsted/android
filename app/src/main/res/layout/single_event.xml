@@ -1,9 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent" tools:context=".SingleEventActivity"
-    android:weightSum="1"
-    android:orientation="vertical">
+<FrameLayout
+    android:id="@+id/scroll_view_child"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:id="@+id/loadingParts"
@@ -27,36 +27,101 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="match_parent"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/joinButton"
+            android:layout_weight="1"
             android:background="@color/action"
             android:textColor="@color/white"
             android:id="@+id/joinBtn"/>
 
         <Button
-            android:layout_width="match_parent"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/cancelButton"
             android:background="@color/action"
             android:textColor="@color/white"
             android:id="@+id/cancelBtn"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <LinearLayout android:id="@+id/details_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin">
+        android:background="#fff"
+        android:paddingTop="16dp">
 
-    </RelativeLayout>
+        <HorizontalScrollView android:id="@+id/session_tags_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:fadingEdgeLength="16dp"
+            android:layout_marginBottom="16dp">
 
-</RelativeLayout>
+        </HorizontalScrollView>
+
+        <LinearLayout android:id="@+id/session_speakers_block"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView android:layout_width="match_parent"
+                android:id="@+id/singleEventTitle"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/session_requirements_block"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView android:layout_width="match_parent"
+                android:id="@+id/session_requirements_header"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/related_videos_block"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView android:layout_width="match_parent"
+                android:id="@+id/related_videos_header"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+        android:id="@+id/header_session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
+
+        <!-- Session title -->
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="0dp"
+            android:textAlignment="viewStart" />
+
+        <!-- Session subtitle -->
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAlignment="viewStart" />
+
+    </LinearLayout>
+</LinearLayout>
+</FrameLayout>
