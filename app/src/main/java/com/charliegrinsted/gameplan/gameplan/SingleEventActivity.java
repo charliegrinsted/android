@@ -60,7 +60,6 @@ public class SingleEventActivity extends Activity {
 
         new FindSingleEventTask().execute();
 
-
     }
 
     private class FindSingleEventTask extends AsyncTask<Void, Void, String> {

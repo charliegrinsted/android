@@ -77,6 +77,13 @@
             <TextView android:layout_width="match_parent"
                 android:id="@+id/singleEventTitle"
                 android:layout_height="wrap_content"/>
+            <TextView android:layout_width="match_parent"
+                android:text="Where?"
+                android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="match_parent"
+                android:text="When?"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <LinearLayout android:id="@+id/session_requirements_block"
