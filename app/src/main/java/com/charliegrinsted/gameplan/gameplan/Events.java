@@ -13,9 +13,8 @@ class Events {
     private String eventDistance;
     private String startTime;
     private String endTime;
-    private Integer numberOfPlayers;
-    private Integer numberOfSpaces;
-    private Location eventLocation;
+    private String eventLatitude;
+    private String eventLongitude;
 
     public String getStartTime() {
         return startTime;
@@ -33,28 +32,20 @@ class Events {
         this.endTime = endTime;
     }
 
-    public Integer getNumberOfPlayers() {
-        return numberOfPlayers;
+    public String getEventLatitude() {
+        return eventLatitude;
     }
 
-    public void setNumberOfPlayers(Integer numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;
+    public void setEventLatitude(String eventLatitude) {
+        this.eventLatitude = eventLatitude;
     }
 
-    public Integer getNumberOfSpaces() {
-        return numberOfSpaces;
+    public String getEventLongitude() {
+        return eventLongitude;
     }
 
-    public void setNumberOfSpaces(Integer numberOfSpaces) {
-        this.numberOfSpaces = numberOfSpaces;
-    }
-
-    public Location getEventLocation() {
-        return eventLocation;
-    }
-
-    public void setEventLocation(Location eventLocation) {
-        this.eventLocation = eventLocation;
+    public void setEventLongitude(String eventLongitude) {
+        this.eventLongitude = eventLongitude;
     }
 
     public String getEventDistance() {

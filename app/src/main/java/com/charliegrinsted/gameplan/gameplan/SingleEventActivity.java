@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Layout;
@@ -122,14 +124,16 @@ public class SingleEventActivity extends Activity {
                     event.setEventInfo(single_event.getString("eventInfo"));
                     event.setEventID(single_event.getString("id"));
 
-                    // StartTime wrangling
+                    JSONObject single_event_location = single_event.getJSONObject("location");
+                    JSONArray single_event_coordinates = single_event_location.getJSONArray("coordinates");
+                    event.setEventLatitude(single_event_coordinates.get(1).toString());
+                    event.setEventLongitude(single_event_coordinates.get(0).toString());
 
+                    // StartTime wrangling
                     String tempStartTime = single_event.getString("startTime"); // get the JSON string
                     DateTime formattedStartTime = ISODateTimeFormat.dateTimeParser().parseDateTime(tempStartTime); // make it a Date object
-
                     DateTimeFormatter outputFormat = DateTimeFormat.forPattern("d MMMM yyyy - HH:mm"); // set the pattern for formatting
                     String outputStartTime = formattedStartTime.toString(outputFormat); // format Date using the pattern, make a String
-
                     event.setStartTime(outputStartTime); // set the string in the Event object
 
                     populateSingleEvent(event);
@@ -141,7 +145,7 @@ public class SingleEventActivity extends Activity {
         }
     }
 
-    private void populateSingleEvent(Events event){
+    private void populateSingleEvent(final Events event){
 
         // Hide loading spinner and text
         loadingParts.setVisibility(View.INVISIBLE);
@@ -154,13 +158,13 @@ public class SingleEventActivity extends Activity {
         openMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                singleEventDescription.setText("lol");
+                // Location wrangling
+                String strUri = "http://maps.google.com/maps?q=loc:" + event.getEventLatitude() + "," + event.getEventLongitude() + " (" + event.getEventTitle() + ")";
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
             }
         });
-
-        Log.e("Event Fired:", "YES");
-
-
 
     }
 
