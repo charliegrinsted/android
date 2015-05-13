@@ -2,6 +2,7 @@ package com.charliegrinsted.gameplan.gameplan;
 
 import android.location.Location;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 class Events {
@@ -10,25 +11,25 @@ class Events {
     private String eventInfo;
     private String eventID;
     private String eventDistance;
-    private Date startTime;
-    private Date endTime;
+    private String startTime;
+    private String endTime;
     private Integer numberOfPlayers;
     private Integer numberOfSpaces;
     private Location eventLocation;
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 

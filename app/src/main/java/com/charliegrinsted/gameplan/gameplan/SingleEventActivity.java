@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -22,6 +23,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +35,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SingleEventActivity extends Activity {
@@ -42,6 +50,9 @@ public class SingleEventActivity extends Activity {
     View loadingParts;
 
     TextView singleEventTitle;
+    TextView singleEventDescription;
+    TextView singleEventStartTime;
+    Button openMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +68,9 @@ public class SingleEventActivity extends Activity {
         thisEventID = intent.getStringExtra("eventID");
 
         singleEventTitle = (TextView) findViewById(R.id.singleEventTitle);
+        singleEventDescription = (TextView) findViewById(R.id.singleEventDescription);
+        singleEventStartTime = (TextView) findViewById(R.id.singleEventStartTime);
+        openMap = (Button) findViewById(R.id.mapBtn);
 
         new FindSingleEventTask().execute();
 
@@ -108,33 +122,42 @@ public class SingleEventActivity extends Activity {
                     event.setEventInfo(single_event.getString("eventInfo"));
                     event.setEventID(single_event.getString("id"));
 
-                    // work from here
-                    //JSONArray items = jsonResponse.getJSONArray("results");
-                    //returnedEvents = new ArrayList<>();
-                    //singleEventID.setText(jsonResponse.toString());
+                    // StartTime wrangling
+
+                    String tempStartTime = single_event.getString("startTime"); // get the JSON string
+                    DateTime formattedStartTime = ISODateTimeFormat.dateTimeParser().parseDateTime(tempStartTime); // make it a Date object
+
+                    DateTimeFormatter outputFormat = DateTimeFormat.forPattern("d MMMM yyyy - HH:mm"); // set the pattern for formatting
+                    String outputStartTime = formattedStartTime.toString(outputFormat); // format Date using the pattern, make a String
+
+                    event.setStartTime(outputStartTime); // set the string in the Event object
 
                     populateSingleEvent(event);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }
 
     private void populateSingleEvent(Events event){
 
-
         // Hide loading spinner and text
         loadingParts.setVisibility(View.INVISIBLE);
 
-        // Put logic here to display time (is it past the event start date? Shouldn't be, but check
         singleEventTitle.setText(event.getEventTitle());
+        singleEventDescription.setText(event.getEventInfo());
 
-        // Also whether the current user is already RSVP
-        // if Yes, say "Going" and display "Cancel" button
-        // else display the "Join" button
+        singleEventStartTime.setText(event.getStartTime());
+
+        openMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                singleEventDescription.setText("lol");
+            }
+        });
+
         Log.e("Event Fired:", "YES");
 
 

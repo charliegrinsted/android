@@ -1,14 +1,9 @@
 package com.charliegrinsted.gameplan.gameplan;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
 import com.charliegrinsted.gameplan.R;
 import com.charliegrinsted.gameplan.tabs.SlidingTabLayout;
 
@@ -25,7 +20,6 @@ public class HomeActivity extends ActionBarActivity {
 
         ViewPager layoutPager = (ViewPager) findViewById(R.id.tabpager);
         SlidingTabLayout layoutTabs = (SlidingTabLayout) findViewById(R.id.slidingtabs);
-        layoutTabs.setDistributeEvenly(true);
         // assign the viewPager and slidingTabLayout from activity_home
 
         ArrayList<Fragment> fragments = new ArrayList<>(3);
@@ -37,6 +31,7 @@ public class HomeActivity extends ActionBarActivity {
         SlidingTabManager slidingTabsAdapter = new SlidingTabManager(getSupportFragmentManager(), fragments);
         layoutPager.setAdapter(slidingTabsAdapter); // connect the adapter to the viewPager
         layoutTabs.setViewPager(layoutPager); // make the tabs relate to the viewPager
+        layoutTabs.setDistributeEvenly(true);
 
     }
 
